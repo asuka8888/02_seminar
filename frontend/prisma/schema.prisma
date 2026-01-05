@@ -1,0 +1,166 @@
+// Financial Intelligence System - Prisma Schema
+// 女性起業家向け金融インテリジェンス配信システム
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ユーザーテーブル
+model User {
+  id            String    @id @default(uuid())
+  email         String    @unique
+  name          String
+  passwordHash  String
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  settings      UserSettings?
+  lineIntegration LineIntegration?
+
+  @@map("users")
+}
+
+// ユーザー設定テーブル
+model UserSettings {
+  id                String   @id @default(uuid())
+  userId            String   @unique
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // 通知設定
+  notifyLine        Boolean  @default(false)
+  notifyEmail       Boolean  @default(true)
+  notifySlack       Boolean  @default(false)
+  notifyFrequency   String   @default("hourly") // immediate, hourly, daily
+
+  // 優先設定
+  preferredSectors  String[] // JSON配列
+  mutedKeywords     String[]
+  mutedAccounts     String[]
+
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@map("user_settings")
+}
+
+// LINE連携テーブル
+model LineIntegration {
+  id          String   @id @default(uuid())
+  userId      String   @unique
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lineUserId  String   @unique
+  accessToken String   // 暗号化推奨
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("line_integrations")
+}
+
+// ニューステーブル
+model News {
+  id            String   @id @default(uuid())
+
+  // メタデータ
+  source        String   // Twitterアカウント名
+  platform      String   // twitter, news
+  publishedAt   DateTime
+
+  // コンテンツ
+  originalText  String   @db.Text  // 原文（英語）
+  translatedText String  @db.Text  // 翻訳文（日本語）
+  summary       String   // AI要約（3行程度）
+
+  // 分析結果
+  sentiment     String   // positive, negative, neutral
+  priority      String   // high, medium, low
+  sector        String
+  tickers       String[] // 関連銘柄ティッカー
+
+  // リンク
+  originalUrl   String
+  notionUrl     String?
+
+  // 管理
+  processed     Boolean  @default(false)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([publishedAt])
+  @@index([sector])
+  @@index([sentiment])
+  @@map("news")
+}
+
+// 時価総額ランキングテーブル
+model MarketCapRanking {
+  id              String   @id @default(uuid())
+
+  // 地域・時間
+  region          String   // global, us, europe, japan
+  snapshotAt      DateTime // スナップショット取得時刻
+
+  // 企業情報
+  rank            Int
+  ticker          String
+  companyName     String
+  sector          String
+  country         String
+
+  // 時価総額
+  marketCapUsd    Decimal  @db.Decimal(20, 2) // USD
+  marketCapLocal  Decimal  @db.Decimal(20, 2) // 現地通貨
+  currency        String   // USD, JPY, EUR
+
+  // 株価・変動
+  price           Decimal  @db.Decimal(10, 2)
+  changeAmount    Decimal  @db.Decimal(10, 2)
+  changePercent   Decimal  @db.Decimal(5, 2)
+
+  // 前回順位（変動検出用）
+  previousRank    Int?
+
+  // 管理
+  createdAt       DateTime @default(now())
+
+  @@index([region, snapshotAt])
+  @@index([ticker])
+  @@map("market_cap_rankings")
+}
+
+// ランキング変動分析テーブル
+model RankingChange {
+  id            String   @id @default(uuid())
+
+  ticker        String
+  region        String
+  oldRank       Int
+  newRank       Int
+  changeDate    DateTime
+
+  // AI分析結果
+  reason        String   @db.Text  // 変動理由
+  newsReferences String[] // 参考ニュースID
+
+  createdAt     DateTime @default(now())
+
+  @@index([ticker, changeDate])
+  @@map("ranking_changes")
+}
+
+// 配信ログテーブル
+model NotificationLog {
+  id          String   @id @default(uuid())
+  userId      String
+  newsId      String?
+  channel     String   // line, email, slack
+  status      String   // sent, failed
+  sentAt      DateTime @default(now())
+
+  @@index([userId, sentAt])
+  @@map("notification_logs")
+}
