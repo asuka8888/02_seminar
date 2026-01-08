@@ -17,6 +17,7 @@ from scraper.twitter_playwright import TwitterPlaywrightScraper, Tweet
 from scraper.scheduler import TwitterScheduler, ProcessedTweet
 from scraper.proxy_manager import ProxyManager
 from agents.local_ai_analyzer import LocalAIAnalyzer
+from database import db_manager
 
 logger = logging.getLogger(__name__)
 
@@ -118,11 +119,19 @@ class ScraperPipeline:
     async def _check_database_connection(self):
         """データベース接続を確認"""
         try:
-            # TODO: Prisma または SQLAlchemy でDB接続確認
-            logger.info("✓ Database connection OK (mock)")
-            # 実装例:
-            # await prisma.connect()
-            # logger.info("✓ Database connected")
+            # Prisma Client に接続
+            await db_manager.connect()
+            logger.info("✓ Database connected")
+
+            # ヘルスチェック
+            is_healthy = await db_manager.health_check()
+            if not is_healthy:
+                raise Exception("Database health check failed")
+
+            # 統計情報を表示
+            stats = await db_manager.get_stats()
+            logger.info(f"Database stats: {stats}")
+
         except Exception as e:
             logger.error(f"✗ Database connection failed: {e}")
             raise
@@ -172,41 +181,71 @@ class ScraperPipeline:
         """
         処理済みツイートをデータベースに保存
 
-        TODO: Prisma schema に基づいた実装
+        Prisma schema の News モデルに保存
         """
         try:
-            # Prisma での実装例:
-            """
-            await prisma.news.create(
+            tweet = processed.tweet
+            analysis = processed.analysis
+
+            # 重複チェック（同じURLのニュースが既に存在する場合はスキップ）
+            existing = await db_manager.client.news.find_first(
+                where={'originalUrl': tweet.url}
+            )
+
+            if existing:
+                logger.debug(f"[DB] Tweet {tweet.tweet_id} already exists, skipping")
+                return
+
+            # News レコードを作成
+            news = await db_manager.client.news.create(
                 data={
-                    'title': processed.analysis.summary[:200],
-                    'content': processed.tweet.content,
-                    'translatedContent': processed.analysis.translated_text,
-                    'sentiment': processed.analysis.sentiment,
-                    'sentimentScore': processed.analysis.sentiment_score,
-                    'marketImpact': processed.analysis.market_impact,
-                    'keyTopics': processed.analysis.key_topics,
-                    'sourceUrl': processed.tweet.url,
-                    'sourcePlatform': 'twitter',
-                    'sourceAccount': processed.account_username,
-                    'publishedAt': processed.tweet.timestamp,
-                    'createdAt': datetime.now(),
-                    'engagement': {
-                        'likes': processed.tweet.likes,
-                        'retweets': processed.tweet.retweets,
-                        'replies': processed.tweet.replies
-                    }
+                    # メタデータ
+                    'source': processed.account_username,
+                    'platform': 'twitter',
+                    'publishedAt': tweet.timestamp,
+
+                    # コンテンツ
+                    'originalText': tweet.content,
+                    'translatedText': analysis.translated_text or tweet.content,
+                    'summary': analysis.summary[:500] if analysis.summary else tweet.content[:200],
+
+                    # 分析結果
+                    'sentiment': analysis.sentiment,
+                    'sentimentScore': analysis.sentiment_score,
+                    'priority': analysis.market_impact,  # high/medium/low
+                    'sector': 'general',  # TODO: セクター分類ロジック
+                    'tickers': [],  # TODO: ティッカー抽出ロジック
+                    'keyTopics': analysis.key_topics,
+
+                    # エンゲージメント
+                    'likes': tweet.likes,
+                    'retweets': tweet.retweets,
+                    'replies': tweet.replies,
+
+                    # リンク
+                    'originalUrl': tweet.url,
+                    'notionUrl': None,  # TODO: Notion連携
+
+                    # 分類
+                    'category': processed.account_category,
+                    'language': tweet.lang,
+
+                    # 管理
+                    'processed': True,
                 }
             )
-            """
 
-            logger.debug(
-                f"[DB] Saved tweet {processed.tweet.tweet_id} "
-                f"from @{processed.account_username}"
+            logger.info(
+                f"[DB] ✓ Saved tweet {tweet.tweet_id} from @{processed.account_username} "
+                f"(priority: {analysis.market_impact}, sentiment: {analysis.sentiment})"
             )
+
+            return news
 
         except Exception as e:
             logger.error(f"Failed to save to database: {e}")
+            import traceback
+            traceback.print_exc()
 
     async def _send_notification(self, processed: ProcessedTweet):
         """

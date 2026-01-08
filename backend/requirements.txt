@@ -30,6 +30,8 @@ numpy==1.26.4
 asyncpg==0.29.0
 sqlalchemy==2.0.27
 alembic==1.13.1
+prisma==0.11.0  # Prisma Client Python
+python-dotenv==1.0.1  # For .env file support
 
 # Task Queue & Caching
 celery==5.3.6
