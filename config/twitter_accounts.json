@@ -1,146 +1,153 @@
 {
-  "version": "1.0",
+  "version": "2.0",
   "lastUpdated": "2026-01-05",
-  "description": "金融インテリジェンスシステム - Twitter監視対象アカウント設定",
+  "description": "金融インテリジェンスシステム - Twitter監視対象アカウント設定（全アカウント同一優先度）",
   "totalAccounts": 91,
+  "globalSettings": {
+    "priority": "high",
+    "checkInterval": "5m",
+    "aiAnalysisDepth": "deep",
+    "notificationEnabled": true,
+    "notificationDelay": "10m"
+  },
   "categories": {
     "japanese_investors": {
       "description": "日本の個人投資家・トレーダー",
       "priority": "high",
       "checkInterval": "5m",
       "accounts": [
-        {"username": "gold_locks_x", "category": "main", "url": "https://x.com/gold_locks_x"},
-        {"username": "monkswagger1", "category": "main", "url": "https://x.com/monkswagger1"},
-        {"username": "paristexas2009", "category": "main", "url": "https://x.com/paristexas2009"},
-        {"username": "yasutaketin", "category": "main", "url": "https://x.com/yasutaketin"},
-        {"username": "pyon", "category": "main", "url": "https://x.com/pyon"},
-        {"username": "4th_skywalker", "category": "main", "url": "https://x.com/4th_skywalker"},
-        {"username": "dawin1958", "category": "main", "url": "https://x.com/dawin1958"},
-        {"username": "takechans1", "category": "main", "url": "https://x.com/takechans1"},
-        {"username": "hakureifarm", "category": "main", "url": "https://x.com/hakureifarm"},
-        {"username": "utbuffett", "category": "main", "url": "https://x.com/utbuffett"},
-        {"username": "markminervini", "category": "main", "url": "https://x.com/markminervini"},
-        {"username": "enu_beat", "category": "main", "url": "https://x.com/enu_beat"},
-        {"username": "spinspin1978", "category": "main", "url": "https://x.com/spinspin1978"},
-        {"username": "senjouinrenshu3", "category": "main", "url": "https://x.com/senjouinrenshu3"},
-        {"username": "senjouinrenshu", "category": "main", "url": "https://x.com/senjouinrenshu"},
-        {"username": "2okutameo", "category": "main", "url": "https://x.com/2okutameo"},
-        {"username": "225sakimonoaiko", "category": "main", "url": "https://x.com/225sakimonoaiko"},
-        {"username": "sumitomo_yuu", "category": "main", "url": "https://x.com/sumitomo_yuu"},
-        {"username": "iketeruyuyu", "category": "main", "url": "https://x.com/iketeruyuyu"},
-        {"username": "yaslovestech", "category": "main", "url": "https://x.com/yaslovestech"},
-        {"username": "harusmile", "category": "main", "url": "https://x.com/harusmile"},
-        {"username": "sen_axis", "category": "main", "url": "https://x.com/sen_axis"},
-        {"username": "money_tweet1118", "category": "main", "url": "https://x.com/money_tweet1118"},
-        {"username": "pontamaru_1028", "category": "main", "url": "https://x.com/pontamaru_1028"},
-        {"username": "kabutrader_nori", "category": "main", "url": "https://x.com/kabutrader_nori"},
-        {"username": "tradetool1", "category": "main", "url": "https://x.com/tradetool1"},
-        {"username": "kanti990", "category": "main", "url": "https://x.com/kanti990"},
-        {"username": "heihachiro888", "category": "main", "url": "https://x.com/heihachiro888"},
-        {"username": "investor__x", "category": "main", "url": "https://x.com/investor__x"},
-        {"username": "raise_grave", "category": "main", "url": "https://x.com/raise_grave"},
-        {"username": "coinspace_", "category": "main", "url": "https://x.com/coinspace_"},
-        {"username": "capitalnvest", "category": "main", "url": "https://x.com/capitalnvest"},
-        {"username": "shenmacro", "category": "main", "url": "https://x.com/shenmacro"},
-        {"username": "goviex", "category": "main", "url": "https://x.com/goviex"},
-        {"username": "to1210shi", "category": "main", "url": "https://x.com/to1210shi"}
+        {"username": "gold_locks_x", "url": "https://x.com/gold_locks_x"},
+        {"username": "monkswagger1", "url": "https://x.com/monkswagger1"},
+        {"username": "paristexas2009", "url": "https://x.com/paristexas2009"},
+        {"username": "yasutaketin", "url": "https://x.com/yasutaketin"},
+        {"username": "pyon", "url": "https://x.com/pyon"},
+        {"username": "4th_skywalker", "url": "https://x.com/4th_skywalker"},
+        {"username": "dawin1958", "url": "https://x.com/dawin1958"},
+        {"username": "takechans1", "url": "https://x.com/takechans1"},
+        {"username": "hakureifarm", "url": "https://x.com/hakureifarm"},
+        {"username": "utbuffett", "url": "https://x.com/utbuffett"},
+        {"username": "markminervini", "url": "https://x.com/markminervini"},
+        {"username": "enu_beat", "url": "https://x.com/enu_beat"},
+        {"username": "spinspin1978", "url": "https://x.com/spinspin1978"},
+        {"username": "senjouinrenshu3", "url": "https://x.com/senjouinrenshu3"},
+        {"username": "senjouinrenshu", "url": "https://x.com/senjouinrenshu"},
+        {"username": "2okutameo", "url": "https://x.com/2okutameo"},
+        {"username": "225sakimonoaiko", "url": "https://x.com/225sakimonoaiko"},
+        {"username": "sumitomo_yuu", "url": "https://x.com/sumitomo_yuu"},
+        {"username": "iketeruyuyu", "url": "https://x.com/iketeruyuyu"},
+        {"username": "yaslovestech", "url": "https://x.com/yaslovestech"},
+        {"username": "harusmile", "url": "https://x.com/harusmile"},
+        {"username": "sen_axis", "url": "https://x.com/sen_axis"},
+        {"username": "money_tweet1118", "url": "https://x.com/money_tweet1118"},
+        {"username": "pontamaru_1028", "url": "https://x.com/pontamaru_1028"},
+        {"username": "kabutrader_nori", "url": "https://x.com/kabutrader_nori"},
+        {"username": "tradetool1", "url": "https://x.com/tradetool1"},
+        {"username": "kanti990", "url": "https://x.com/kanti990"},
+        {"username": "heihachiro888", "url": "https://x.com/heihachiro888"},
+        {"username": "investor__x", "url": "https://x.com/investor__x"},
+        {"username": "raise_grave", "url": "https://x.com/raise_grave"},
+        {"username": "coinspace_", "url": "https://x.com/coinspace_"},
+        {"username": "capitalnvest", "url": "https://x.com/capitalnvest"},
+        {"username": "shenmacro", "url": "https://x.com/shenmacro"},
+        {"username": "goviex", "url": "https://x.com/goviex"},
+        {"username": "to1210shi", "url": "https://x.com/to1210shi"}
       ]
     },
     "japanese_analysts": {
       "description": "日本の市場アナリスト・情報配信",
       "priority": "high",
-      "checkInterval": "10m",
+      "checkInterval": "5m",
       "accounts": [
-        {"username": "bei_wayaku", "category": "system", "url": "https://x.com/bei_wayaku", "note": "米国市場翻訳・解説"},
-        {"username": "fukuri41", "category": "system", "url": "https://x.com/fukuri41", "note": "複利運用情報"},
-        {"username": "market_letter_", "category": "system", "url": "https://x.com/market_letter_", "note": "マーケットレター"}
+        {"username": "bei_wayaku", "url": "https://x.com/bei_wayaku", "note": "米国市場翻訳・解説"},
+        {"username": "fukuri41", "url": "https://x.com/fukuri41", "note": "複利運用情報"},
+        {"username": "market_letter_", "url": "https://x.com/market_letter_", "note": "マーケットレター"}
       ]
     },
     "japanese_vip": {
-      "description": "重要アカウント（最優先監視）",
-      "priority": "critical",
-      "checkInterval": "3m",
+      "description": "日本の重要アカウント",
+      "priority": "high",
+      "checkInterval": "5m",
       "accounts": [
-        {"username": "keith_market", "category": "vip", "url": "https://x.com/keith_market", "note": "🔑 キーアカウント"},
-        {"username": "utdanaher", "category": "vip", "url": "https://x.com/utdanaher", "note": "🔑 ダナハー投資法"},
-        {"username": "roe_roe_roe", "category": "vip", "url": "https://x.com/roe_roe_roe", "note": "🔑 ROE分析"}
+        {"username": "keith_market", "url": "https://x.com/keith_market", "note": "🔑 キーアカウント"},
+        {"username": "utdanaher", "url": "https://x.com/utdanaher", "note": "🔑 ダナハー投資法"},
+        {"username": "roe_roe_roe", "url": "https://x.com/roe_roe_roe", "note": "🔑 ROE分析"}
       ]
     },
     "us_macro_strategy": {
       "description": "米国マクロ経済・市場戦略",
       "priority": "high",
-      "checkInterval": "15m",
+      "checkInterval": "5m",
       "accounts": [
-        {"username": "LizAnnSonders", "category": "macro", "url": "https://x.com/LizAnnSonders", "note": "Charles Schwab チーフストラテジスト"},
-        {"username": "elerianm", "category": "macro", "url": "https://x.com/elerianm", "note": "Mohamed El-Erian (Allianz)"},
-        {"username": "Schuldensuehner", "category": "macro", "url": "https://x.com/Schuldensuehner", "note": "Holger Zschaepitz (ドイツ)"},
-        {"username": "lisaabramowicz1", "category": "macro", "url": "https://x.com/lisaabramowicz1", "note": "Lisa Abramowicz (Bloomberg)"},
-        {"username": "charliebilello", "category": "macro", "url": "https://x.com/charliebilello", "note": "Charlie Bilello (データ分析)"},
-        {"username": "jsblokland", "category": "macro", "url": "https://x.com/jsblokland", "note": "Jeroen Blokland"},
-        {"username": "NorthmanTrader", "category": "macro", "url": "https://x.com/NorthmanTrader", "note": "Sven Henrich (逆張り)"},
-        {"username": "DiMartinoBooth", "category": "macro", "url": "https://x.com/DiMartinoBooth", "note": "元FRB顧問"},
-        {"username": "LynAldenContact", "category": "macro", "url": "https://x.com/LynAldenContact", "note": "Lyn Alden"},
-        {"username": "RaoulGMI", "category": "macro", "url": "https://x.com/RaoulGMI", "note": "Raoul Pal (Real Vision)"},
-        {"username": "GRDecter", "category": "macro", "url": "https://x.com/GRDecter", "note": "Genevieve Roch-Decter, CFA"},
-        {"username": "jessefelder", "category": "macro", "url": "https://x.com/jessefelder", "note": "Jesse Felder"},
-        {"username": "biancoresearch", "category": "macro", "url": "https://x.com/biancoresearch", "note": "Jim Bianco"},
-        {"username": "MacroAlf", "category": "macro", "url": "https://x.com/MacroAlf", "note": "Alf (元銀行トレーダー)"},
-        {"username": "yardeni", "category": "macro", "url": "https://x.com/yardeni", "note": "Yardeni Research"}
+        {"username": "LizAnnSonders", "url": "https://x.com/LizAnnSonders", "note": "Charles Schwab チーフストラテジスト"},
+        {"username": "elerianm", "url": "https://x.com/elerianm", "note": "Mohamed El-Erian (Allianz)"},
+        {"username": "Schuldensuehner", "url": "https://x.com/Schuldensuehner", "note": "Holger Zschaepitz (ドイツ)"},
+        {"username": "lisaabramowicz1", "url": "https://x.com/lisaabramowicz1", "note": "Lisa Abramowicz (Bloomberg)"},
+        {"username": "charliebilello", "url": "https://x.com/charliebilello", "note": "Charlie Bilello (データ分析)"},
+        {"username": "jsblokland", "url": "https://x.com/jsblokland", "note": "Jeroen Blokland"},
+        {"username": "NorthmanTrader", "url": "https://x.com/NorthmanTrader", "note": "Sven Henrich (逆張り)"},
+        {"username": "DiMartinoBooth", "url": "https://x.com/DiMartinoBooth", "note": "元FRB顧問"},
+        {"username": "LynAldenContact", "url": "https://x.com/LynAldenContact", "note": "Lyn Alden"},
+        {"username": "RaoulGMI", "url": "https://x.com/RaoulGMI", "note": "Raoul Pal (Real Vision)"},
+        {"username": "GRDecter", "url": "https://x.com/GRDecter", "note": "Genevieve Roch-Decter, CFA"},
+        {"username": "jessefelder", "url": "https://x.com/jessefelder", "note": "Jesse Felder"},
+        {"username": "biancoresearch", "url": "https://x.com/biancoresearch", "note": "Jim Bianco"},
+        {"username": "MacroAlf", "url": "https://x.com/MacroAlf", "note": "Alf (元銀行トレーダー)"},
+        {"username": "yardeni", "url": "https://x.com/yardeni", "note": "Yardeni Research"}
       ]
     },
     "us_technical_analysis": {
       "description": "米国テクニカル分析",
-      "priority": "medium",
-      "checkInterval": "20m",
+      "priority": "high",
+      "checkInterval": "5m",
       "accounts": [
-        {"username": "WilliamONeil", "category": "technical", "url": "https://x.com/WilliamONeil", "note": "CAN SLIM"},
-        {"username": "IBDinvestors", "category": "technical", "url": "https://x.com/IBDinvestors", "note": "IBD"},
-        {"username": "TrendSpider", "category": "technical", "url": "https://x.com/TrendSpider", "note": "AI分析"},
-        {"username": "PeterLBrandt", "category": "technical", "url": "https://x.com/PeterLBrandt", "note": "古典的チャート"},
-        {"username": "alphatrends", "category": "technical", "url": "https://x.com/alphatrends", "note": "Brian Shannon (VWAP)"},
-        {"username": "allstarcharts", "category": "technical", "url": "https://x.com/allstarcharts", "note": "JC Parets"},
-        {"username": "Stocktwits", "category": "technical", "url": "https://x.com/Stocktwits", "note": "センチメント"},
-        {"username": "InvestorsLive", "category": "technical", "url": "https://x.com/InvestorsLive", "note": "Nathan Michaud"},
-        {"username": "OptionsHawk", "category": "technical", "url": "https://x.com/OptionsHawk", "note": "オプション監視"},
-        {"username": "RedDogT3", "category": "technical", "url": "https://x.com/RedDogT3", "note": "Scott Redler"}
+        {"username": "WilliamONeil", "url": "https://x.com/WilliamONeil", "note": "CAN SLIM"},
+        {"username": "IBDinvestors", "url": "https://x.com/IBDinvestors", "note": "IBD"},
+        {"username": "TrendSpider", "url": "https://x.com/TrendSpider", "note": "AI分析"},
+        {"username": "PeterLBrandt", "url": "https://x.com/PeterLBrandt", "note": "古典的チャート"},
+        {"username": "alphatrends", "url": "https://x.com/alphatrends", "note": "Brian Shannon (VWAP)"},
+        {"username": "allstarcharts", "url": "https://x.com/allstarcharts", "note": "JC Parets"},
+        {"username": "Stocktwits", "url": "https://x.com/Stocktwits", "note": "センチメント"},
+        {"username": "InvestorsLive", "url": "https://x.com/InvestorsLive", "note": "Nathan Michaud"},
+        {"username": "OptionsHawk", "url": "https://x.com/OptionsHawk", "note": "オプション監視"},
+        {"username": "RedDogT3", "url": "https://x.com/RedDogT3", "note": "Scott Redler"}
       ]
     },
     "us_short_sellers": {
       "description": "米国ショートセラー・リスク分析",
       "priority": "high",
-      "checkInterval": "10m",
+      "checkInterval": "5m",
       "accounts": [
-        {"username": "HindenburgRes", "category": "short", "url": "https://x.com/HindenburgRes", "note": "Hindenburg Research"},
-        {"username": "muddywatersre", "category": "short", "url": "https://x.com/muddywatersre", "note": "Muddy Waters"},
-        {"username": "CitronResearch", "category": "short", "url": "https://x.com/CitronResearch", "note": "Citron Research"}
+        {"username": "HindenburgRes", "url": "https://x.com/HindenburgRes", "note": "Hindenburg Research"},
+        {"username": "muddywatersre", "url": "https://x.com/muddywatersre", "note": "Muddy Waters"},
+        {"username": "CitronResearch", "url": "https://x.com/CitronResearch", "note": "Citron Research"}
       ]
     },
     "us_fundamentals": {
       "description": "米国ファンダメンタルズ分析",
-      "priority": "medium",
-      "checkInterval": "30m",
+      "priority": "high",
+      "checkInterval": "5m",
       "accounts": [
-        {"username": "AswathDamodaran", "category": "fundamental", "url": "https://x.com/AswathDamodaran", "note": "NYU教授"},
-        {"username": "BrianFeroldi", "category": "fundamental", "url": "https://x.com/BrianFeroldi", "note": "財務解説"},
-        {"username": "AppEconomyIns", "category": "fundamental", "url": "https://x.com/AppEconomyIns", "note": "決算ビジュアル"},
-        {"username": "10kdiver", "category": "fundamental", "url": "https://x.com/10kdiver", "note": "10-K分析"},
-        {"username": "awealthofcs", "category": "fundamental", "url": "https://x.com/awealthofcs", "note": "Ben Carlson"},
-        {"username": "morganhousel", "category": "fundamental", "url": "https://x.com/morganhousel", "note": "Morgan Housel"},
-        {"username": "iancassel", "category": "fundamental", "url": "https://x.com/iancassel", "note": "MicroCap"},
-        {"username": "SahilBloom", "category": "fundamental", "url": "https://x.com/SahilBloom", "note": "メンタルモデル"},
-        {"username": "bespokeinvest", "category": "fundamental", "url": "https://x.com/bespokeinvest", "note": "Bespoke"},
-        {"username": "ValueStockGeek", "category": "fundamental", "url": "https://x.com/ValueStockGeek", "note": "バリュー投資"}
+        {"username": "AswathDamodaran", "url": "https://x.com/AswathDamodaran", "note": "NYU教授"},
+        {"username": "BrianFeroldi", "url": "https://x.com/BrianFeroldi", "note": "財務解説"},
+        {"username": "AppEconomyIns", "url": "https://x.com/AppEconomyIns", "note": "決算ビジュアル"},
+        {"username": "10kdiver", "url": "https://x.com/10kdiver", "note": "10-K分析"},
+        {"username": "awealthofcs", "url": "https://x.com/awealthofcs", "note": "Ben Carlson"},
+        {"username": "morganhousel", "url": "https://x.com/morganhousel", "note": "Morgan Housel"},
+        {"username": "iancassel", "url": "https://x.com/iancassel", "note": "MicroCap"},
+        {"username": "SahilBloom", "url": "https://x.com/SahilBloom", "note": "メンタルモデル"},
+        {"username": "bespokeinvest", "url": "https://x.com/bespokeinvest", "note": "Bespoke"},
+        {"username": "ValueStockGeek", "url": "https://x.com/ValueStockGeek", "note": "バリュー投資"}
       ]
     },
     "us_tech_crypto": {
       "description": "米国テック・暗号資産",
-      "priority": "medium",
-      "checkInterval": "30m",
+      "priority": "high",
+      "checkInterval": "5m",
       "accounts": [
-        {"username": "paulg", "category": "tech", "url": "https://x.com/paulg", "note": "Paul Graham (Y Combinator)"},
-        {"username": "balajis", "category": "tech", "url": "https://x.com/balajis", "note": "Balaji (元Coinbase CTO)"},
-        {"username": "VitalikButerin", "category": "crypto", "url": "https://x.com/VitalikButerin", "note": "Vitalik (Ethereum)"},
-        {"username": "100trillionUSD", "category": "crypto", "url": "https://x.com/100trillionUSD", "note": "PlanB (S2F)"}
+        {"username": "paulg", "url": "https://x.com/paulg", "note": "Paul Graham (Y Combinator)"},
+        {"username": "balajis", "url": "https://x.com/balajis", "note": "Balaji (元Coinbase CTO)"},
+        {"username": "VitalikButerin", "url": "https://x.com/VitalikButerin", "note": "Vitalik (Ethereum)"},
+        {"username": "100trillionUSD", "url": "https://x.com/100trillionUSD", "note": "PlanB (S2F)"}
       ]
     },
     "us_news_alternative": {
@@ -148,72 +155,43 @@
       "priority": "high",
       "checkInterval": "5m",
       "accounts": [
-        {"username": "DeItaone", "category": "news", "url": "https://x.com/DeItaone", "note": "Walter Bloomberg (超速報)"},
-        {"username": "zerohedge", "category": "news", "url": "https://x.com/zerohedge", "note": "ZeroHedge"},
-        {"username": "unusual_whales", "category": "alternative", "url": "https://x.com/unusual_whales", "note": "政治家取引追跡"},
-        {"username": "VCBrags", "category": "alternative", "url": "https://x.com/VCBrags", "note": "VC風刺"},
-        {"username": "TrungTPhan", "category": "alternative", "url": "https://x.com/TrungTPhan", "note": "ビジネス歴史"},
-        {"username": "gurgavin", "category": "news", "url": "https://x.com/gurgavin", "note": "チャート速報"},
-        {"username": "Benzinga", "category": "news", "url": "https://x.com/Benzinga", "note": "Benzinga"}
+        {"username": "DeItaone", "url": "https://x.com/DeItaone", "note": "Walter Bloomberg (超速報)"},
+        {"username": "zerohedge", "url": "https://x.com/zerohedge", "note": "ZeroHedge"},
+        {"username": "unusual_whales", "url": "https://x.com/unusual_whales", "note": "政治家取引追跡"},
+        {"username": "VCBrags", "url": "https://x.com/VCBrags", "note": "VC風刺"},
+        {"username": "TrungTPhan", "url": "https://x.com/TrungTPhan", "note": "ビジネス歴史"},
+        {"username": "gurgavin", "url": "https://x.com/gurgavin", "note": "チャート速報"},
+        {"username": "Benzinga", "url": "https://x.com/Benzinga", "note": "Benzinga"}
       ]
     }
   },
   "monitoringRules": {
-    "japanese_investors": {
-      "language": "ja",
-      "translationRequired": false,
-      "aiAnalysisDepth": "standard",
-      "notificationPriority": "high"
-    },
-    "japanese_analysts": {
-      "language": "ja",
-      "translationRequired": false,
+    "all_accounts": {
+      "priority": "high",
+      "checkInterval": "5m",
       "aiAnalysisDepth": "deep",
-      "notificationPriority": "high"
-    },
-    "japanese_vip": {
-      "language": "ja",
-      "translationRequired": false,
-      "aiAnalysisDepth": "deep",
-      "notificationPriority": "critical",
-      "immediateNotification": true
-    },
-    "us_macro_strategy": {
-      "language": "en",
-      "translationRequired": true,
-      "aiAnalysisDepth": "deep",
-      "notificationPriority": "high"
-    },
-    "us_technical_analysis": {
-      "language": "en",
-      "translationRequired": true,
-      "aiAnalysisDepth": "standard",
-      "notificationPriority": "medium"
-    },
-    "us_short_sellers": {
-      "language": "en",
-      "translationRequired": true,
-      "aiAnalysisDepth": "deep",
-      "notificationPriority": "critical",
-      "immediateNotification": true
-    },
-    "us_fundamentals": {
-      "language": "en",
-      "translationRequired": true,
-      "aiAnalysisDepth": "standard",
-      "notificationPriority": "medium"
-    },
-    "us_tech_crypto": {
-      "language": "en",
-      "translationRequired": true,
-      "aiAnalysisDepth": "standard",
-      "notificationPriority": "medium"
-    },
-    "us_news_alternative": {
-      "language": "en",
-      "translationRequired": true,
-      "aiAnalysisDepth": "quick",
-      "notificationPriority": "high"
+      "notificationEnabled": true,
+      "notificationDelay": "10m",
+      "translationRequired": "auto",
+      "processingRules": {
+        "japanese": {
+          "translationRequired": false,
+          "aiAnalysisDepth": "deep"
+        },
+        "english": {
+          "translationRequired": true,
+          "aiAnalysisDepth": "deep"
+        }
+      }
+    }
+  },
+  "notification": {
+    "channels": ["line", "email", "dashboard"],
+    "batchInterval": "10m",
+    "maxBatchSize": 20,
+    "dailySummary": {
+      "enabled": true,
+      "time": "08:00"
     }
   }
 }
