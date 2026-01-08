@@ -1,32 +1,65 @@
+import { Suspense } from 'react'
+import Header from '@/components/Header'
+import NewsGrid from '@/components/NewsGrid'
+import FilterBar from '@/components/FilterBar'
+import StatsOverview from '@/components/StatsOverview'
+
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm">
-        <h1 className="text-4xl font-bold mb-4">
-          Financial Intelligence System
-        </h1>
-        <p className="text-lg text-gray-600">
-          女性起業家向け金融インテリジェンス配信システム
-        </p>
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="p-6 border rounded-lg">
-            <h2 className="text-xl font-semibold mb-2">Twitter監視</h2>
-            <p className="text-gray-600">50個のMust Followアカウントをリアルタイム監視</p>
-          </div>
-          <div className="p-6 border rounded-lg">
-            <h2 className="text-xl font-semibold mb-2">AI分析</h2>
-            <p className="text-gray-600">Claude Codeによるインテリジェント分析</p>
-          </div>
-          <div className="p-6 border rounded-lg">
-            <h2 className="text-xl font-semibold mb-2">市場データ</h2>
-            <p className="text-gray-600">時価総額TOP10リアルタイム追跡</p>
-          </div>
-          <div className="p-6 border rounded-lg">
-            <h2 className="text-xl font-semibold mb-2">配信</h2>
-            <p className="text-gray-600">LINE/メールで即時通知</p>
+    <div className="min-h-screen bg-gradient-to-br from-apple-gray-50 via-white to-apple-gray-100">
+      {/* Header */}
+      <Header />
+
+      {/* Main Content */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Stats Overview */}
+        <Suspense fallback={<StatsOverviewSkeleton />}>
+          <StatsOverview />
+        </Suspense>
+
+        {/* Filter Bar */}
+        <div className="mt-8">
+          <FilterBar />
+        </div>
+
+        {/* News Grid */}
+        <div className="mt-8">
+          <Suspense fallback={<NewsGridSkeleton />}>
+            <NewsGrid />
+          </Suspense>
+        </div>
+      </main>
+
+      {/* Footer */}
+      <footer className="mt-24 border-t border-apple-gray-200 bg-white/50 backdrop-blur-md">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="text-center text-apple-gray-500 text-sm">
+            <p>© 2026 Financial Intelligence System</p>
+            <p className="mt-2">女性起業家向け金融インテリジェンス配信システム</p>
           </div>
         </div>
-      </div>
-    </main>
+      </footer>
+    </div>
+  )
+}
+
+// Loading Skeletons
+function StatsOverviewSkeleton() {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-6 animate-pulse">
+      {[...Array(4)].map((_, i) => (
+        <div key={i} className="bg-white/60 backdrop-blur-sm rounded-apple-lg p-6 h-32" />
+      ))}
+    </div>
+  )
+}
+
+function NewsGridSkeleton() {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 animate-pulse">
+      {[...Array(9)].map((_, i) => (
+        <div key={i} className="bg-white/60 backdrop-blur-sm rounded-apple-lg p-6 h-64" />
+      ))}
+    </div>
   )
 }
